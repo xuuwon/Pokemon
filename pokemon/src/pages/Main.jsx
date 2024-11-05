@@ -9,7 +9,6 @@ export default function Main() {
             {pokemonData.map(el => { // map에는 리턴이 필요하다
                 return (<Card key={el.id} pokemon={el}/>)
             })}
-
         </>
     )
 }

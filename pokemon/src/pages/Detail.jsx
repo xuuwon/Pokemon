@@ -1,6 +1,8 @@
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { selectPokemonById } from "../RTK/selector";
+import FavoriteButton from "../components/FavoriteButton";
+import FlipCard from "../components/FlipCard";
 
 export default function Detail() {
     const { pokemonId } = useParams();
@@ -9,12 +11,16 @@ export default function Detail() {
     console.log("선택된 포켓몬:", pokemonId);
 
     return (
-        <div className="flex flex-col justify-center items-center border border-[gray] p-[30px] rounded-[10px]">
+        <div className="bg-white flex flex-col justify-center items-center border
+        py-[30px] px-[60px] rounded-[10px] border-b-[8px] border-r-[8px] border-black">
             {pokemon ? (
                 <>
-                    <div className="text-[28px] mb-[10px]">{pokemon.name}</div>
+                    <div className="text-[28px] mb-[10px]">
+                        {pokemon.name}
+                        <FavoriteButton pokemonId={Number(pokemonId)}/>
+                    </div>
                     <div className="whitespace-pre-wrap text-center">{pokemon.discription}</div>
-                    <img className="w-[200px]" src={pokemon.front} alt={pokemon.name} />
+                    <FlipCard front={pokemon.front} back={pokemon.back}/>
                 </>
             ) : (
                 <div>포켓몬 데이터를 찾을 수 없습니다.</div>
